@@ -2,7 +2,7 @@
  * @Author: pikachuworld jinqingemail@163.com
  * @Date: 2022-08-31 17:00:03
  * @LastEditors: pikachuworld jinqingemail@163.com
- * @LastEditTime: 2022-10-08 16:15:30
+ * @LastEditTime: 2022-11-07 17:48:34
  * @FilePath: /e-commerce-admin/src/router/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -11,11 +11,17 @@ import HomeView from '@/views/HomeView.vue'
 
 import { useCounterStore } from '@/stores/counter'
 import OrderAdmin from '@/views/OrderAdmin/Index.vue'
-
+import LogicFlow from '@/views/demo/LogicFlow.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/flow',
+      name: 'logicFlow',
+      component: LogicFlow
+    
+    },
     {
       path: '/home',
       name: 'home',
@@ -50,19 +56,14 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach((from) => {
-  const counterStore = useCounterStore()
-  // console.log('===beforeEach username}}}=',  counterStore.username)
-  // console.log('===beforeEach  isLogin}}}=', counterStore.isLogin)
-  const { isLogin }  = counterStore
-  // console.log('====login ', isLogin, from.name)
-  if(isLogin || from.name == 'login'){
-  //  console.log('====login success', )
-    return true
-  } else {
-    // console.log('====login error')
-    return {name:'login'}
-  }
- 
-})
+// router.beforeEach((from) => {
+//   const counterStore = useCounterStore()
+//   const { isLogin }  = counterStore
+//   if(isLogin || from.name == 'login'){
+//     return true
+//   } else {
+//     return {name:'login'}
+//   }
+// })
+
 export default router
